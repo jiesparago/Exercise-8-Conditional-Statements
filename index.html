@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <select
+      name="inputConv"
+      id="inputConv"
+      onchange="(this.id,this.value)"
+      onclick="(this.id,this.value)"
+    >
+      <option value="--">--</option>
+      <option value="1">Kilo</option>
+      <option value="1000">Grams</option>
+      <option value="1000000">Milligram</option>
+    </select>
+    <input type="number" id="Unit" placeholder="Enter Weight to Convert" />
+
+    <select
+      name="inputRev"
+      id="inputRev"
+      onchange="(this.id,this.value)"
+      onclick="(this.id,this.value)"
+    >
+      <option value="--">--</option>
+      <option value="1">Kilo</option>
+      <option value="1000">Grams</option>
+      <option value="1000000">Milligram</option>
+    </select>
+
+    <button id="Con" onclick="convert()">Convert</button>
+
+    <h1 id="Kilo"></h1>
+
+    <script>
+      function convert() {
+        let Value1 = document.getElementById("inputConv").value;
+        let Value2 = document.getElementById("inputRev").value;
+        let UnitIn = document.getElementById("Unit").value;
+        let Value3 = "";
+        switch (true) {
+          case Value1 < Value2:
+            if (Value1 == 1 && Value2 == 1000) {
+              Value3 = parseFloat(UnitIn) * parseFloat(Value2);
+            } else if (Value1 == 1 && Value2 == 1000000) {
+              Value3 = parseFloat(UnitIn) * parseFloat(Value2);
+            } else if (Value1 == 1000 && Value2 == 1000000) {
+              Value3 = parseFloat(UnitIn) * parseFloat(Value1);
+            } else {
+              Value3 = UnitIn;
+            }
+            break;
+          case Value1 > Value2:
+            if (Value1 == 1000 && Value2 == 1) {
+              Value3 = parseFloat(UnitIn) / parseFloat(Value1);
+            } else if (Value1 == 1000000 && Value2 == 1) {
+              Value3 = parseFloat(UnitIn) / parseFloat(Value1);
+            } else if (Value1 == 1000000 && Value2 == 1000) {
+              Value3 = parseFloat(UnitIn) / parseFloat(Value2);
+            } else {
+              Value3 = UnitIn;
+            }
+            break;
+          default:
+            Value3 = UnitIn;
+        }
+        document.getElementById("Kilo").innerHTML = Value3;
+      }
+    </script>
+  </body>
+</html>
